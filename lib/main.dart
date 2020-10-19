@@ -30,19 +30,52 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
   final String title;
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
+}
+
+class FavoriteWidget extends StatefulWidget {
+  @override
+  _FavoriteWidgetState createState() => _FavoriteWidgetState();
+}
+
+class _FavoriteWidgetState extends State<FavoriteWidget> {
+  bool _isFavorited = true;
+  int _favoriteCount = 41;
+
+  void _toggleFavorite() {
+    setState(() {
+      if (_isFavorited) {
+        _favoriteCount -= 1;
+        _isFavorited = false;
+      } else {
+        _favoriteCount += 1;
+        _isFavorited = true;
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(mainAxisSize: MainAxisSize.min, children: [
+      Container(
+        padding: EdgeInsets.all(0),
+        child: IconButton(
+          icon: (_isFavorited ? Icon(Icons.star) : Icon(Icons.star_border)),
+          color: Colors.red[500],
+          onPressed: _toggleFavorite,
+        ),
+      ),
+      SizedBox(
+        width: 18,
+        child: Container(
+          child: Text('$_favoriteCount'),
+        ),
+      ),
+    ]);
+  }
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -60,11 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Text('Kandersteg', style: TextStyle(color: Colors.grey[500]))
           ]),
         ),
-        Icon(
-          Icons.star,
-          color: Colors.red[500],
-        ),
-        Text('41')
+        FavoriteWidget(),
       ]));
 
   Widget buttonSection = Container(
