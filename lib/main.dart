@@ -102,7 +102,13 @@ class _MyHomePageState extends State<MyHomePage> {
           // the App.build method, and use it to set our appbar title.
           title: Text(widget.title),
         ),
-        body: Column(children: [titleSection, buttonSection, textSection]));
+        body: ListView(children: [
+          Image.asset('images/lake.jpg',
+              width: 600, height: 240, fit: BoxFit.cover),
+          titleSection,
+          buttonSection,
+          textSection
+        ]));
   }
 }
 
