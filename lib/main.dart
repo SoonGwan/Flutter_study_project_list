@@ -78,6 +78,17 @@ class _MyHomePageState extends State<MyHomePage> {
     ),
   );
 
+  Widget textSection = Container(
+    padding: const EdgeInsets.all(32),
+    child: Text(
+        'Lake Oeschinen lies at the foot of the Blüemlisalp in the Bernese '
+        'Alps. Situated 1,578 meters above sea level, it is one of the '
+        'larger Alpine Lakes. A gondola ride from Kandersteg, followed by a '
+        'half-hour walk through pastures and pine forest, leads you to the '
+        'lake, which warms to 20 degrees Celsius in the summer. Activities '
+        'enjoyed here include rowing, and riding the summer toboggan run.',
+        softWrap: true),
+  );
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -91,7 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // the App.build method, and use it to set our appbar title.
           title: Text(widget.title),
         ),
-        body: Column(children: [titleSection, buttonSection]));
+        body: Column(children: [titleSection, buttonSection, textSection]));
   }
 }
 
