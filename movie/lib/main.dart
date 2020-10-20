@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movie/service/list_movie.dart';
+import 'package:movie/service/list_team.dart';
 
 void main() {
   runApp(MyApp());
@@ -9,7 +9,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    teamList();
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
