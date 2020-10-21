@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'package:infinite_scroll/bloc/post/post_state.dart';
+import 'package:infinite_scroll/model/post_model.dart';
 import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -73,5 +74,41 @@ class _HomePageState extends State<HomePage> {
     if( maxScroll <= currentScroll) {
       _postBloc.dispatch(Fetch());
     }
+  }
+}
+
+class BottomLoader extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container (
+      alignment: Alignment.center,
+      child:Center (
+        child:SizedBox(
+          width:33,
+          height:33,
+          child: CircularProgressIndicator(
+            strokeWidth:1.5,
+          )
+        )
+      )
+    );
+  }
+}
+
+class PostWidget extends StatelessWidget {
+  final PostModel post;
+
+  const PostWidget({Key key, @required this.post}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading:Text('${post.id}', style:TextStyle(fontSize:10.0),
+      ),
+      title:Text('${post.title}'),
+      isThreeLine:true,
+      subtitle:Text(post.body),
+      dense:true,
+    );
   }
 }
